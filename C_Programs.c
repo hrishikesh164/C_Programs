@@ -886,3 +886,216 @@ int main()
     }
     return 0;
 }
+
+/* 42.Display all common factors of two numbers. */
+
+#include <stdio.h>
+
+int main()
+{
+    int num1, num2, min;
+    printf("Input two numbers: ");
+    scanf("%d %d", &num1, &num2);
+    min = num1 < num2 ? num1 : num2;
+    printf("The common factors between %d and %d are: ", num1, num2);
+    for (int i = 1; i <= min; i++)
+        if (num1 % i == 0 && num2 % i == 0)
+            printf(" %d ", i);
+    return 0;
+}
+
+/* 43. Display the largest and smallest common factor of two numbers.*/
+
+#include <stdio.h>
+int main()
+{
+    int num1, num2, min, max;
+    printf("Input two numbers: ");
+    scanf("%d %d", &num1, &num2);
+    max = num1 < num2 ? num1 : num2;
+    while (1)
+    {
+        if (num1 % max == 0 && num2 % max == 0)
+        {
+            printf("Largest common factor: %d\n", max);
+            break;
+        }
+        max--;
+    }
+
+    min = 2;
+    while (1)
+    {
+        if (num1 % min == 0 && num2 % min == 0)
+        {
+            printf("Smallest common factor: %d", min);
+            break;
+        }
+        min++;
+    }
+    return 0;
+}
+
+/* 44. Generate fibonacci series upto nth terms.*/
+
+#include <stdio.h>
+int main()
+{
+    int n, t1 = 0, t2 = 1, t3;
+    printf("Input the nth term: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        if (i <= 1)
+            t3 = i;
+        else
+        {
+            t3 = t1 + t2;
+            t1 = t2;
+            t2 = t3;
+        }
+        printf(" %d ", t3);
+    }
+    return 0;
+}
+
+/* 45. Enter a number and check whether it is a fibonacci number or not.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int isPerfectSquare(int n)
+{
+    int sqrtN = sqrt(n);
+    return sqrtN * sqrtN == n;
+}
+
+int isFibonacci(int n)
+{
+    return isPerfectSquare(5 * n * n + 4) || isPerfectSquare(5 * n * n - 4);
+}
+
+int main()
+{
+    int n;
+    printf("Input a number: ");
+    scanf("%d", &n);
+    if (isFibonacci(n))
+        printf("%d is a Fibonacci number.", n);
+    else
+        printf("%d is not a Fibonacci number.", n);
+    return 0;
+}
+
+/* 46. Calculate X^y using function and recursive function. */
+
+#include <stdio.h>
+
+int power(int x, int y) // Using function
+{
+    int result = 1;
+    for (int i = 0; i < y; i++)
+        result *= x;
+    return result;
+}
+
+int recurpower(int x, int y) // Using recursion
+{
+    if (y == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return x * power(x, y - 1);
+    }
+}
+
+int main()
+{
+    int x, y;
+    printf("Input the base X: ");
+    scanf("%d", &x);
+    printf("Input the power y: ");
+    scanf("%d", &y);
+    printf("The result of %d^%d is: %d", x, y, recurpower(x, y));
+    return 0;
+}
+
+/* 47. Calculate square root of a number. */
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    double num, result;
+    printf("Input a number: ");
+    scanf("%lf", &num);
+    result = sqrt(num);
+    printf("The square root of %lf is %lf", num, result);
+    return 0;
+}
+
+/* 48.Calculate the frequency of digits in a number.*/
+
+#include <stdio.h>
+int main()
+{
+    int n, digit, freq[10] = {0};
+    printf("Input a number: ");
+    scanf("%d", &n);
+    while (n != 0)
+    {
+        digit = n % 10;
+        freq[digit]++;
+        n /= 10;
+    }
+    printf("Digit Frequency: \n");
+    for (int i = 0; i < 10; i++)
+        if (freq[i] != 0)
+            printf(" %d = %d\n", i, freq[i]);
+    return 0;
+}
+
+/* 49. Convert a binary number into its decimal equivalent. */
+
+#include <stdio.h>
+int main()
+{
+    int binary;
+    int decimal = 0, rem, base = 1;
+    printf("Input a binary number: ");
+    scanf("%d", &binary);
+    while (binary != 0)
+    {
+        rem = binary % 10;
+        decimal += rem * base;
+        binary /= 10;
+        base *= 2;
+    }
+    printf("Decimal equivalent: %d", decimal);
+    return 0;
+}
+
+/* 50. Enter a number and a base and convert the number into the given base.*/
+#include <stdio.h>
+int main()
+{
+    int num, base, i = 1, rem, temp;
+    printf("Input a number: ");
+    scanf("%d", &num);
+    printf("Input a base(2 - 10): ");
+    scanf("%d", &base);
+    if (base < 2 || base > 10)
+        printf("Invalid base. Input a number between 2 and 10.");
+    temp = num;
+    while (temp != 0)
+    {
+        rem = temp % base;
+        temp /= base;
+        num += rem * i;
+        i *= 10;
+    }
+    printf("Number in base: %d", num);
+    return 0;
+}
