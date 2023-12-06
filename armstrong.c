@@ -10,10 +10,10 @@ int armstrong(int n)
         sum += deno * deno * deno;
         i /= 10;
     }
-    if (sum == i)
-        printf("%d is an armstrong number", n);
+    if (sum == n)
+        return 1;
     else
-        printf("%d is an armstrong number", n);
+        return 0;
 }
 
 int main()
@@ -21,6 +21,9 @@ int main()
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    armstrong(n);
+    if (armstrong(n))
+        printf("%d is an armstrong number", n);
+    else
+        printf("%d is not an armstrong number", n);
     return 0;
 }
