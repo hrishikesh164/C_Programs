@@ -1,4 +1,3 @@
-
 /* 1. Write a C program to check for prime number. */
 
 #include <stdio.h>
@@ -17,9 +16,9 @@ int isPrime(int n)
         }
     }
     if (flag == 0)
-        printf("%d is a prime number.", n);
+        return 1;
     else
-        printf("%d is not a prime number.", n);
+        return 0;
 }
 
 int main()
@@ -27,7 +26,10 @@ int main()
     int n;
     printf("Input a number: ");
     scanf("%d", &n);
-    isPrime(n);
+    if (isPrime(n))
+        printf("%d is a prime number.", n);
+    else
+        printf("%d is not a prime number.", n);
     return 0;
 }
 
@@ -42,9 +44,9 @@ int perfect(int n)
         if (n % i == 0)
             sum += i;
     if (sum == n)
-        printf("%d is a perfect number.", n);
+        return 1;
     else
-        printf("%d is not a perfect number.", n);
+        return 0;
 }
 
 int main()
@@ -52,7 +54,10 @@ int main()
     int n;
     printf("Input a number: ");
     scanf("%d", &n);
-    perfect(n);
+    if (perfect(n))
+        printf("%d is a perfect number.", n);
+    else
+        printf("%d is not a perfect number.", n);
     return 0;
 }
 
@@ -71,9 +76,9 @@ int armstong(int n)
         num /= 10;
     }
     if (result == n)
-        printf("%d is an armstong number.", n);
+        return 1;
     else
-        printf("%d is not an armstong number.", n);
+        return 0;
 }
 
 int main()
@@ -81,7 +86,10 @@ int main()
     int n;
     printf("Input a number: ");
     scanf("%d", &n);
-    armstong(n);
+    if (armstong(n))
+        printf("%d is an armstong number.", n);
+    else
+        printf("%d is not an armstong number.", n);
     return 0;
 }
 
@@ -100,9 +108,9 @@ int amicable(int a, int b)
         if (b % i == 0)
             sum2 += i;
     if (sum1 == b && sum2 == a)
-        printf("%d and %d are amicable numbers.", a, b);
+        return 1;
     else
-        printf("%d and %d are not amicable numbers.", a, b);
+        return 0;
 }
 
 int main()
@@ -112,7 +120,10 @@ int main()
     scanf("%d", &a);
     printf("Input second number: ");
     scanf("%d", &b);
-    amicable(a, b);
+    if (amicable(a, b))
+        printf("%d and %d are amicable numbers.", a, b);
+    else
+        printf("%d and %d are not amicable numbers.", a, b);
     return 0;
 }
 
@@ -120,26 +131,27 @@ int main()
 
 #include <stdio.h>
 
-int sumproduct(int n)
+void sumproduct(int n, int *sum, int *prod)
 {
-    int num, rem, sum = 0, prod = 1;
+    int num, rem;
+    *sum = 0, *prod = 1;
     num = n;
     while (num != 0)
     {
         rem = num % 10;
-        sum += rem;
-        prod *= rem;
+        *sum += rem;
+        *prod *= rem;
         num /= 10;
     }
-    printf("The sum and product of %d are %d and %d", n, sum, prod);
 }
 
 int main()
 {
-    int n;
+    int n, sum, prod;
     printf("Input a number: ");
     scanf("%d", &n);
-    sumproduct(n);
+    sumproduct(n, &sum, &prod);
+    printf("The sum and product of %d are %d and %d", n, sum, prod);
     return 0;
 }
 
@@ -249,13 +261,12 @@ int main()
 
 #include <stdio.h>
 
-int swap(int a, int b)
+void swap(int *a, int *b)
 {
     int t;
-    t = a;
-    a = b;
-    b = t;
-    printf(" a = %d and b = %d", a, b);
+    t = *a;
+    *a = *b;
+    *b = t;
 }
 
 int main()
@@ -265,8 +276,9 @@ int main()
     scanf("%d %d", &a, &b);
     printf("The values before swap are: ");
     printf(" a = %d and b = %d", a, b);
+    swap(&a, &b);
     printf("\nThe values after swap are: ");
-    swap(a, b);
+    printf(" a = %d and b = %d", a, b);
     return 0;
 }
 
