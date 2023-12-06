@@ -7,9 +7,9 @@ int perfect(int n)
         if (n % i == 0)
             sum += i;
     if (sum == n)
-        printf("%d is a perfect number.", n);
+        return 1;
     else
-        printf("%d is not a perfect number.", n);
+        return 0;
 }
 
 int main()
@@ -17,6 +17,9 @@ int main()
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    perfect(n);
+    if (perfect(n))
+        printf("%d is a perfect number.", n);
+    else
+        printf("%d is not a perfect number.", n);
     return 0;
 }
