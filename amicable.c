@@ -11,9 +11,9 @@ int amicable(int a, int b)
         if (b % i == 0)
             sum2 += i;
     if (a == sum2 && b == sum1)
-        printf("%d and %d are amicable numebers.", a, b);
+        return 1;
     else
-        printf("%d and %d are not amicable numebers.", a, b);
+        return 0;
 }
 
 int main()
@@ -23,6 +23,9 @@ int main()
     scanf("%d", &a);
     printf("Enter the second number: ");
     scanf("%d", &b);
-    amicable(a, b);
+    if (amicable(a, b))
+        printf("%d and %d are amicable numebers.", a, b);
+    else
+        printf("%d and %d are not amicable numebers.", a, b);
     return 0;
 }
